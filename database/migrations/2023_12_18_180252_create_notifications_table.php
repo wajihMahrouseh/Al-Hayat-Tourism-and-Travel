@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->string('address');
+            $table->text('description');
             $table->timestamps();
         });
     }

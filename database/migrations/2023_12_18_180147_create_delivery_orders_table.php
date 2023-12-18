@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\ReservationOrder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,6 +14,14 @@ return new class extends Migration
     {
         Schema::create('delivery_orders', function (Blueprint $table) {
             $table->id();
+            $table->string('governorate');
+            $table->string('region');
+            $table->string('street');
+            $table->string('building_number');
+            $table->string('details');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->foreignIdFor(ReservationOrder::class);
             $table->timestamps();
         });
     }

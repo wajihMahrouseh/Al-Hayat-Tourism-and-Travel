@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Journey;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,8 @@ return new class extends Migration
     {
         Schema::create('reservation_orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('total_journey_seat_num');
+            $table->foreignIdFor(Journey::class);
             $table->timestamps();
         });
     }
