@@ -2,10 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Driver;
+use App\Models\ReservationOrder;
+use App\Models\DeliveryOrderDriver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeliveryOrder extends Model
 {
     use HasFactory;
+
+
+    public function reservationOrder()
+    {
+        $this->belongsTo(ReservationOrder::class);
+    }
+
+
+    public function drivers()
+    {
+        $this->belongsToMany(Driver::class);
+    }
+
+
+    public function deliveryOrderDriver()
+    {
+        $this->hasMany(DeliveryOrderDriver::class);
+    }
 }
