@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('right_columns');
             $table->integer('left_columns');
             $table->integer('back_columns');
-            $table->foreignIdFor(Site::class);
+            $table->foreignIdFor(Site::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('reservation_orders', function (Blueprint $table) {
             $table->id();
             $table->integer('total_journey_seat_num');
-            $table->foreignIdFor(Journey::class);
+            $table->foreignIdFor(Journey::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

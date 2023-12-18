@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('details');
             $table->string('latitude');
             $table->string('longitude');
-            $table->foreignIdFor(ReservationOrder::class);
+            $table->foreignIdFor(ReservationOrder::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

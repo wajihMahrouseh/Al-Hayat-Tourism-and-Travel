@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('car_number');
             $table->string('car_color');
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

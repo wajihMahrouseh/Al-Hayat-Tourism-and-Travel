@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('delivery_order_driver', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Driver::class);
-            $table->foreignIdFor(DeliveryOrder::class);
+            $table->foreignIdFor(Driver::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(DeliveryOrder::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
