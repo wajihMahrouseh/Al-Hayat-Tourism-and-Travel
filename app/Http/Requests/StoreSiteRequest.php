@@ -11,7 +11,7 @@ class StoreSiteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreSiteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:3', 'max:50'],
+            'photos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ];
+    }
+
+
+    public function validated($key = null, $default = null): array
+    {
+        return [
+            'name' => $this->name,
         ];
     }
 }

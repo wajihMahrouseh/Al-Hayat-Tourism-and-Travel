@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Site;
+use App\Models\Category;
 use App\Http\Requests\StoreSiteRequest;
 use App\Http\Requests\UpdateSiteRequest;
+use App\Http\Resources\SiteDetailsResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class SiteController extends Controller
 {
@@ -19,9 +22,20 @@ class SiteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSiteRequest $request)
+    public function store(StoreSiteRequest $request, Category $category)
     {
-        //
+        $site = $category->sites->create($request->validated());
+
+        // Handle multiple photo uploads
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $site->addMedia($photo)->toMediaCollection('photos');
+            }
+        }
+
+        return response()->json([
+            'message' => trans('messages.add'),
+        ], Response::HTTP_CREATED);
     }
 
     /**
@@ -29,7 +43,9 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        //
+        return response()->json([
+            'data' => new SiteDetailsResource($site),
+        ]);
     }
 
     /**
@@ -37,7 +53,11 @@ class SiteController extends Controller
      */
     public function update(UpdateSiteRequest $request, Site $site)
     {
-        //
+        $site->update($request->validated());
+
+        return response()->json([
+            'message' => trans('messages.edit'),
+        ]);
     }
 
     /**
@@ -45,6 +65,10 @@ class SiteController extends Controller
      */
     public function destroy(Site $site)
     {
-        //
+        $site->delete();
+
+        return response()->json([
+            'message' => trans('messages.delete'),
+        ]);
     }
 }
