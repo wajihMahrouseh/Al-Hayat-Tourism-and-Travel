@@ -14,12 +14,12 @@ class DeliveryOrderDriver extends Model
 
     public function deliveryOrder()
     {
-        $this->belongsTo(DeliveryOrder::class);
+        return $this->belongsTo(DeliveryOrder::class);
     }
 
 
     public function driver()
     {
-        $this->belongsTo(Driver::class);
+        return $this->belongsTo(Driver::class);
     }
 }

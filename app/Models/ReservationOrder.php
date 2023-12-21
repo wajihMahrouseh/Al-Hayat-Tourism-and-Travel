@@ -16,24 +16,24 @@ class ReservationOrder extends Model
 
     public function journey()
     {
-        $this->belongsTo(Journey::class);
+        return $this->belongsTo(Journey::class);
     }
 
 
     public function individualJourneySeats()
     {
-        $this->hasMany(IndividualJourneySeat::class);
+        return $this->hasMany(IndividualJourneySeat::class);
     }
 
 
     public function companyJourneySeats()
     {
-        $this->hasMany(CompanyJourneySeat::class);
+        return $this->hasMany(CompanyJourneySeat::class);
     }
 
 
     public function deliveryOrder()
     {
-        $this->hasOne(DeliveryOrder::class);
+        return $this->hasOne(DeliveryOrder::class);
     }
 }

@@ -11,15 +11,17 @@ class Site extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
 
     public function journeys()
     {
-        $this->hasMany(Journey::class);
+        return $this->hasMany(Journey::class);
     }
 }

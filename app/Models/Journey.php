@@ -14,12 +14,12 @@ class Journey extends Model
 
     public function site()
     {
-        $this->belongsTo(Site::class);
+        return $this->belongsTo(Site::class);
     }
 
 
     public function reservationOrder()
     {
-        $this->hasMany(ReservationOrder::class);
+        return $this->hasMany(ReservationOrder::class);
     }
 }

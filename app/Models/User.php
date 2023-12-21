@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function driver()
     {
-        $this->hasOne(Driver::class);
+        return $this->hasOne(Driver::class);
     }
 }

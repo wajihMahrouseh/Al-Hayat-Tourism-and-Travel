@@ -19,6 +19,6 @@ class Category extends Model implements HasMedia
 
     public function sites()
     {
-        $this->hasMany(Site::class);
+        return $this->hasMany(Site::class, 'category_id');
     }
 }

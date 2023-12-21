@@ -15,18 +15,18 @@ class Driver extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
 
     public function deliveryOrder()
     {
-        $this->belongsToMany(DeliveryOrder::class);
+        return $this->belongsToMany(DeliveryOrder::class);
     }
 
 
     public function deliveryOrderDriver()
     {
-        $this->hasMany(DeliveryOrderDriver::class);
+        return $this->hasMany(DeliveryOrderDriver::class);
     }
 }

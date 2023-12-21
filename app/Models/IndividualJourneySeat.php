@@ -13,6 +13,6 @@ class IndividualJourneySeat extends Model
 
     public function reservationOrder()
     {
-        $this->belongsTo(ReservationOrder::class);
+        return $this->belongsTo(ReservationOrder::class);
     }
 }

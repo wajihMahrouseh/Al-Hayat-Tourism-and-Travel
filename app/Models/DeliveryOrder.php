@@ -15,18 +15,18 @@ class DeliveryOrder extends Model
 
     public function reservationOrder()
     {
-        $this->belongsTo(ReservationOrder::class);
+        return $this->belongsTo(ReservationOrder::class);
     }
 
 
     public function drivers()
     {
-        $this->belongsToMany(Driver::class);
+        return $this->belongsToMany(Driver::class);
     }
 
 
     public function deliveryOrderDriver()
     {
-        $this->hasMany(DeliveryOrderDriver::class);
+        return $this->hasMany(DeliveryOrderDriver::class);
     }
 }
