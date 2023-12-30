@@ -13,6 +13,18 @@ class DeliveryOrder extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'status',
+        'governorate',
+        'region',
+        'street',
+        'building_number',
+        'details',
+        'longitude',
+        'latitude',
+    ];
+
+
     public function reservationOrder()
     {
         return $this->belongsTo(ReservationOrder::class);

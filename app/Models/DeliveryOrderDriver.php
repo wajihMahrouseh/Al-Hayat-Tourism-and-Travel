@@ -12,6 +12,13 @@ class DeliveryOrderDriver extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'driver_id',
+        'delivery_order_id',
+        'status'
+    ];
+
+
     public function deliveryOrder()
     {
         return $this->belongsTo(DeliveryOrder::class);
