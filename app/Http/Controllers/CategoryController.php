@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
 use App\Models\Category;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Services\PaginationMetaService;
+use App\Http\Resources\SitesListResource;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Http\Resources\CategoriesListResource;
@@ -13,26 +16,37 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryController extends Controller
 {
+    protected $paginationMetaService;
+
+    public function __construct(PaginationMetaService $paginationMetaService)
+    {
+        $this->paginationMetaService = $paginationMetaService;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $categoriesQuery = QueryBuilder::for(Category::class)
+            ->with(['media'])
             ->select(['id', 'name', 'created_at'])
             ->allowedFilters(['name'])
             ->latest();
 
         $categories = request()->page === null ? $categoriesQuery->get() : $categoriesQuery->paginate(request()->input('limit'));
 
-        // Get the pagination meta information using the function
-        $paginationMeta = $this->generatePaginationMeta($categories);
+        // Use PaginationMetaService to get pagination meta data
+        $paginationMeta = $categories instanceof LengthAwarePaginator ?
+            $this->paginationMetaService->generatePaginationMeta($categories) : null;
 
         return response()->json([
             'meta' => $paginationMeta,
             'data' => CategoriesListResource::collection($categories),
         ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -57,8 +71,23 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $sitesQuery = QueryBuilder::for(Site::class)
+            ->where('category_id', $category->id)
+            ->with(['media'])
+            ->select(['id', 'name', 'created_at'])
+            ->allowedFilters(['name'])
+            ->latest();
+
+        $sites = request()->page === null ? $sitesQuery->get() : $sitesQuery->paginate(request()->input('limit'));
+
+        // Use PaginationMetaService to get pagination meta data
+        $paginationMeta = $sites instanceof LengthAwarePaginator ?
+            $this->paginationMetaService->generatePaginationMeta($sites) : null;
+
         return response()->json([
-            'data' => new CategoryDetailsResource($category),
+            'meta' => $paginationMeta,
+            'category' => $category->name,
+            'data' => SitesListResource::collection($sites),
         ]);
     }
 
@@ -68,6 +97,18 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
+
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $category->clearMediaCollection('photos');
+            $photo = $request->file('photo');
+            $category->addMedia($photo)->toMediaCollection('photos');
+        }
+
+        // $oldPhotoPath = $category->photo; // Get the path of the old photo
+        // if ($oldPhotoPath && Storage::disk('public')->exists($oldPhotoPath)) {
+        //     Storage::disk('public')->delete($oldPhotoPath); // Delete the old photo
+        // }
 
         return response()->json([
             'message' => trans('messages.edit'),
@@ -84,30 +125,5 @@ class CategoryController extends Controller
         return response()->json([
             'message' => trans('messages.delete'),
         ]);
-    }
-
-
-    // Function to generate meta information for pagination
-    public function generatePaginationMeta(LengthAwarePaginator $paginator = null)
-    {
-        if ($paginator) {
-            return [
-                "current_page" => $paginator->currentPage(),
-                "last_page" => $paginator->lastPage(),
-                "per_page" => $paginator->perPage(),
-                "path" => $paginator->path(),
-                "fragment" => $paginator->fragment(),
-                "first_page_url" => $paginator->url(1),
-                "last_page_url" => $paginator->url($paginator->lastPage()),
-                "next_page_url" => $paginator->nextPageUrl(),
-                "prev_page_url" => $paginator->previousPageUrl(),
-                "from" => $paginator->firstItem(),
-                "to" => $paginator->lastItem(),
-                "total" => $paginator->total(),
-                'links' => $paginator->render(),
-            ];
-        }
-
-        return null;
     }
 }

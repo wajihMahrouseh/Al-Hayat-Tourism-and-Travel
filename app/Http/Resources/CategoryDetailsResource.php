@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\SitesListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryDetailsResource extends JsonResource
@@ -18,6 +19,10 @@ class CategoryDetailsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->getFirstMediaUrl('photos'),
+
+            'sites' => $this->whenLoaded('sites', function () {
+                return $this->sites ? SitesListResource::collection($this->sites) : null;
+            }),
         ];
     }
 }

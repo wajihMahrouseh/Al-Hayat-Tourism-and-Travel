@@ -18,7 +18,9 @@ class CategoriesListResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image' => $this->getFirstMediaUrl('photos'),
+            'image' => $this->whenLoaded('media', function () {
+                return $this->getFirstMediaUrl('photos');
+            }),
         ];
     }
 }
