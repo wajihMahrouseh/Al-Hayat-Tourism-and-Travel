@@ -11,6 +11,9 @@ class CompanyJourneySeat extends Model
     use HasFactory;
 
 
+    protected $fillable = ['seat_number'];
+
+
     public function reservationOrder()
     {
         return $this->belongsTo(ReservationOrder::class);
