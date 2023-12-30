@@ -11,7 +11,7 @@ class StoreNotificationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,20 @@ class StoreNotificationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'min:3', 'max:50'],
+            'date' => ['required', 'date', 'date_format:Y-m-d'],
+            'description' => ['required', 'string', 'min:3', 'max:50'],
+            'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+
+        ];
+    }
+
+    public function validated($key = null, $default = null)
+    {
+        return [
+            'title' => $this->title,
+            'date' => $this->date,
+            'description' => $this->description,
         ];
     }
 }
