@@ -1,0 +1,2316 @@
+{
+	"info": {
+		"_postman_id": "6d59ce82-5bf7-499c-a3f7-a7a3ec95e747",
+		"name": "alhayat-apis-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31925103"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login - admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\",\r\n    \"device_name\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login - driver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"driver-1\",\r\n    \"password\": \"driver-1\",\r\n    \"device_name\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"admin\",\r\n    \"confirmPassword\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/change-password/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"change-password",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "list of categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categories?page=1&limit=15",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "category 1",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "category updated!!",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Site",
+			"item": [
+				{
+					"name": "store site",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "site 1",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "photos[]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/categories/1/sites",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1",
+								"sites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show site",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sites/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update site",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "site updated!!",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "photos[]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/sites/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete site",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sites/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Journey",
+			"item": [
+				{
+					"name": "store journey",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startDate\": \"2023-09-01\",\r\n    \"duration\": \"3 Hours\",\r\n    \"price\": 1500,\r\n    \"description\": \"description\",\r\n    \"rows\": 9,\r\n    \"rightColumns\": 2,\r\n    \"leftColumns\": 2,\r\n    \"backColumns\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sites/1/journeys",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sites",
+								"1",
+								"journeys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show journey",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/journeys/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update journey",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startDate\": \"2023-09-01\",\r\n    \"duration\": \"3 Hours\",\r\n    \"price\": 1500,\r\n    \"description\": \"description\",\r\n    \"rows\": 9,\r\n    \"rightColumns\": 2,\r\n    \"leftColumns\": 2,\r\n    \"backColumns\": 5\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/journeys/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete journey",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/journeys/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation Order",
+			"item": [
+				{
+					"name": "list of paid reservation orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/reservation-orders?page=1&limit=15&filter[status]=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								},
+								{
+									"key": "filter[status]",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list of unpaid reservation orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/reservation-orders?page=1&limit=15&filter[status]=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								},
+								{
+									"key": "filter[status]",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store customer reservation order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "totalJourneySeatNum",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][firstName]",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][lastName]",
+									"value": "nickName",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][fatherName]",
+									"value": "father",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][motherName]",
+									"value": "mother",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][placeAndBirthDate]",
+									"value": "aleppo 1999/09/01",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][nationalNumber]",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][phone]",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][email]",
+									"value": "example@email.com",
+									"type": "text"
+								},
+								{
+									"key": "seatDetails[0][frontId]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "seatDetails[0][backId]",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "seatDetails[0][seatNumber]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/journeys/1/reservation-orders/customer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1",
+								"reservation-orders",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store company reservation order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"totalJourneySeatNum\": 1,\r\n    \"seatNumber\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/journeys/1/reservation-orders/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1",
+								"reservation-orders",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete reservation order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/reservation-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "journey reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/journeys/1/reservation-orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"journeys",
+								"1",
+								"reservation-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "seat details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/reservation-orders/seat-details/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders",
+								"seat-details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show reservation order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/reservation-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change reservation order status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/change-reservation-orders-status/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"change-reservation-orders-status",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "statistics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/reservation-orders/statistics",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders",
+								"statistics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery Order",
+			"item": [
+				{
+					"name": "list of unaccepted delivery orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/delivery-orders?page=1&limit=15&filter[status]=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								},
+								{
+									"key": "filter[status]",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list of accepted delivery orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/delivery-orders?page=1&limit=15&filter[status]=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								},
+								{
+									"key": "filter[status]",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store delivery order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"governorate\": \"governorate\",\r\n    \"region\": \"region\",\r\n    \"street\": \"street\",\r\n    \"buildingNumber\": \"buildingNumber\",\r\n    \"details\": \"details\",\r\n    \"longitude\": \"longitude\",\r\n    \"latitude\": \"latitude\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/reservation-orders/1/delivery-orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reservation-orders",
+								"1",
+								"delivery-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show delivery order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/delivery-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update delivery order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"governorate\": \"governorate\",\r\n    \"region\": \"region\",\r\n    \"street\": \"street\",\r\n    \"buildingNumber\": \"buildingNumber\",\r\n    \"details\": \"details\",\r\n    \"longitude\": \"longitude\",\r\n    \"latitude\": \"latitude\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/delivery-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete delivery order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/delivery-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept delivery order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"driversId\": [1]\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/delivery-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"delivery-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change delivery order status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 2\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/change-driver-delivery-orders-status/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"change-driver-delivery-orders-status",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driver delivery order list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/driver-delivery-orders",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"driver-delivery-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driver delivery order show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/driver-delivery-orders/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"driver-delivery-orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "store settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"whoUs\": \"who us\",\r\n    \"phone\": \"123456789\",\r\n    \"email\": \"example@email.com\",\r\n    \"facebook\": \"https://facebook.com/example\",\r\n    \"website\": \"www.example.com\",\r\n    \"address\": \"aleppo city\",\r\n    \"workTime\": \"9:00 am - 5:00 pm\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show setting",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"whoUs\": \"who us\",\r\n    \"phone\": \"123456789\",\r\n    \"email\": \"example@email.com\",\r\n    \"facebook\": \"https://facebook.com/example\",\r\n    \"website\": \"www.example.com\",\r\n    \"address\": \"aleppo city\",\r\n    \"workTime\": \"9:00 am - 5:00 pm\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/settings",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"settings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "list of notifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/notifications?page=1&limit=15",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "date",
+									"value": "2023-09-01",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/notifications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "title updated!!",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/0_uE4PoOneDTmxCbAR0_uE4P.jpg"
+								},
+								{
+									"key": "date",
+									"value": "2023-09-01",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/notifications/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notifications",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show notification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/notifications/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notifications",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "list of drivers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/drivers?page=1&limit=15",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"drivers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								},
+								{
+									"key": "filter[name]",
+									"value": "name",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"phone\": \"phone\",\r\n    \"carNumber\": \"carNumber\",\r\n    \"carColor\": \"carColor\",\r\n    \"username\": \"username\",\r\n    \"password\": \"password\",\r\n    \"confirmPassword\": \"password\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/drivers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/drivers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"drivers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"phone\": \"phone\",\r\n    \"carNumber\": \"carNumber\",\r\n    \"carColor\": \"carColor\",\r\n    \"username\": \"username\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/drivers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"drivers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/drivers/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"drivers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
